@@ -6,7 +6,7 @@ Status: draft
 
 ## Problem
 
-School of Song needs a reliable budgeting workflow that consolidates financial data from QuickBooks, Mercury, and Shopify into Google Sheets. Today, finance reporting is fragmented across tools and manual exports, which makes monthly budget tracking slow and error-prone.
+School of Song needs a reliable budgeting workflow that consolidates financial data from QuickBooks and Mercury into Google Sheets, with Shopify support planned for a later milestone. Today, finance reporting is fragmented across tools and manual exports, which makes monthly budget tracking slow and error-prone.
 
 ## Users
 
@@ -17,13 +17,13 @@ School of Song needs a reliable budgeting workflow that consolidates financial d
 ## Jobs To Be Done
 
 - Maintain budget workbooks in Google Sheets with auditable source data.
-- Automatically pull recent transactions and balances from QuickBooks, Mercury, and Shopify.
+- Automatically pull recent transactions and balances from QuickBooks and Mercury.
 - Reconcile source records into budget categories and reporting periods.
 - Share finance outputs without requiring database or BI tooling.
 
 ## Requirements
 
-1. The system must ingest source data from QuickBooks, Mercury, and Shopify via authenticated API connectors.
+1. The system must ingest source data from QuickBooks and Mercury via authenticated API connectors.
 2. Persistent data must live in Google Sheets (and supporting files in Google Drive) rather than an internal database.
 3. Each sync run must be idempotent for a defined time window, avoiding duplicate records on rerun.
 4. Source records must be written to raw tabs before transformation, preserving traceability to original system IDs.
@@ -35,10 +35,11 @@ School of Song needs a reliable budgeting workflow that consolidates financial d
 - Replacing QuickBooks as accounting source of truth.
 - Building a custom ledger or long-term warehouse outside Google Sheets.
 - Designing final budget taxonomy and approval workflows in this phase.
+- Delivering Shopify integration in the foundation milestone.
 
 ## Acceptance Criteria
 
-1. A single command can run an end-to-end sync for a date window and populate raw tabs for QuickBooks, Mercury, and Shopify in a runtime-selected or runtime-created Google Sheet.
+1. A single command can run an end-to-end sync for a date window and populate raw tabs for QuickBooks and Mercury in a runtime-selected or runtime-created Google Sheet.
 2. Re-running the same window does not create duplicate rows when keyed by source system record IDs.
 3. Each sync run writes structured run metadata (run ID, source, status, counts, duration) to a dedicated sheet tab.
 4. Generated workbooks include budget-ready derived tabs with documented input dependencies from raw tabs.

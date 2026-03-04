@@ -6,13 +6,13 @@ Status: draft
 
 ## Context
 
-We need a project foundation that integrates QuickBooks, Mercury, Shopify, Google Drive, and Google Sheets while keeping Google Sheets as the persistent data store. This lets School of Song move quickly with transparent budget workflows that stakeholders can inspect directly.
+We need a project foundation that integrates QuickBooks, Mercury, Google Drive, and Google Sheets while keeping Google Sheets as the persistent data store. Shopify is deferred to a later milestone. This lets School of Song move quickly with transparent budget workflows that stakeholders can inspect directly.
 
 ## Scope
 
 In scope:
 
-- Connector interfaces and configuration model for QuickBooks, Mercury, Shopify, and Google APIs.
+- Connector interfaces and configuration model for QuickBooks, Mercury, and Google APIs.
 - A sync workflow that writes raw source data and run metadata into Google Sheets.
 - Deterministic transformation boundaries from raw tabs to budget-facing tabs.
 - Setup and governance docs for credentials, preflight checks, and implementation milestones.
@@ -22,6 +22,7 @@ Out of scope:
 - Advanced forecasting models and scenario planning.
 - Payroll-specific accounting logic.
 - Full production deployment and secret-rotation automation.
+- Shopify connector implementation in the foundation milestone.
 
 ## Constraints
 
@@ -52,7 +53,7 @@ Planned module mapping to layer model:
 
 - `types`: source schemas, normalized row contracts, run metadata contracts.
 - `config`: environment schema, integration toggles, and workbook naming/location rules.
-- `repo`: provider clients for QuickBooks, Mercury, Shopify, Google Drive, Google Sheets.
+- `repo`: provider clients for QuickBooks, Mercury, Google Drive, Google Sheets.
 - `service`: orchestration for sync windows, deduplication, transforms, and reconciliation rules.
 - `runtime`: scheduled/manual sync commands, backfill commands, status reporting.
 - `ui`: optional future operator dashboard or CLI output formatting.

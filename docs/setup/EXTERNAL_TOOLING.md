@@ -31,8 +31,7 @@ Required credentials for integration milestones:
 - Local environment variable: `QUICKBOOKS_REALM_ID`
 - Local environment variable: `QUICKBOOKS_REFRESH_TOKEN`
 - Local environment variable: `MERCURY_API_TOKEN`
-- Local environment variable: `SHOPIFY_STORE_DOMAIN`
-- Local environment variable: `SHOPIFY_ADMIN_ACCESS_TOKEN`
+- Shopify credentials deferred until Shopify integration milestone.
 
 GitHub Actions secrets/variables:
 
@@ -40,12 +39,10 @@ GitHub Actions secrets/variables:
 - Secret: `QUICKBOOKS_CLIENT_SECRET`
 - Secret: `QUICKBOOKS_REFRESH_TOKEN`
 - Secret: `MERCURY_API_TOKEN`
-- Secret: `SHOPIFY_ADMIN_ACCESS_TOKEN`
 - Variable: `GOOGLE_SERVICE_ACCOUNT_EMAIL`
 - Variable: `GOOGLE_DRIVE_ROOT_FOLDER_ID`
 - Variable: `QUICKBOOKS_CLIENT_ID`
 - Variable: `QUICKBOOKS_REALM_ID`
-- Variable: `SHOPIFY_STORE_DOMAIN`
 
 Do not store secret values in this repository.
 Do store local-only secrets in `.env.local` (ignored by git) and load from shell profile.
@@ -60,8 +57,8 @@ Service access checks:
   - Verify: call company info endpoint with active token and confirm `realmId` matches config.
 - Mercury API token with account read scopes
   - Verify: call accounts endpoint and confirm account list returns.
-- Shopify Admin API app installed on School of Song store
-  - Verify: call shop endpoint and confirm store metadata returns.
+- Shopify integration (deferred)
+  - Verify later: configure Admin API app and call shop endpoint when Shopify milestone starts.
 
 Primary data location policy:
 

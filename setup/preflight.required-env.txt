@@ -10,5 +10,3 @@ QUICKBOOKS_CLIENT_SECRET|optional|QuickBooks OAuth client secret|Create QuickBoo
 QUICKBOOKS_REALM_ID|optional|QuickBooks company realm ID|Retrieve realm ID from QuickBooks app/company settings.
 QUICKBOOKS_REFRESH_TOKEN|optional|QuickBooks OAuth refresh token|Complete OAuth flow and export token securely.
 MERCURY_API_TOKEN|optional|Mercury API token for account/transaction sync|Generate Mercury API token with required scopes.
-SHOPIFY_STORE_DOMAIN|optional|Shopify store domain for Admin API access|Set store domain (for example `schoolofsong.myshopify.com`).
-SHOPIFY_ADMIN_ACCESS_TOKEN|optional|Shopify Admin API token for data sync|Create private/custom app and export Admin token securely.
