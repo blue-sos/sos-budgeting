@@ -3,40 +3,39 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Disconnect | SOS Budgeting</title>
+    <title>Connect | SOS Budgeting</title>
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
     <main>
       <section class="card">
         <div class="header">
-          <h1>Disconnect Instructions</h1>
+          <h1>Connect / Reconnect Endpoint</h1>
           <p>SOS Budgeting QuickBooks Integration</p>
           <div class="nav">
             <a href="./index.html">Home</a>
             <a href="./privacy.html">Privacy</a>
             <a href="./terms.html">Terms</a>
             <a href="./launch.html">Launch</a>
-            <a href="./connect.html">Connect</a>
+            <a href="./disconnect.html">Disconnect</a>
+            <a href="./oauth-callback.html">OAuth Callback</a>
           </div>
         </div>
         <div class="content">
           <p>
-            To disconnect this integration, revoke app access from the connected QuickBooks company and remove
-            local stored refresh tokens.
+            This endpoint is used as the public connect/reconnect URL for Intuit app metadata.
+            The operational OAuth flow is initiated by an internal operator from local tooling.
           </p>
 
-          <h3>Disconnect Steps</h3>
+          <h3>Flow Summary</h3>
           <ol>
-            <li>In QuickBooks Online, open <strong>Apps</strong>, then locate this integration and disconnect it.</li>
-            <li>Delete local OAuth tokens from your machine or secret manager.</li>
-            <li>Confirm future sync runs fail until explicit re-authorization.</li>
+            <li>Operator initiates OAuth against Intuit consent.</li>
+            <li>Intuit redirects to callback with <code>code</code> and <code>realmId</code>.</li>
+            <li>Credentials are exchanged and stored in local secure config.</li>
           </ol>
 
-          <h3>Support</h3>
           <p>
-            For access revocation support, contact
-            <a href="mailto:blue@schoolofsong.org">blue@schoolofsong.org</a>.
+            <a class="button primary" href="./oauth-callback.html">Open Callback Diagnostic Page</a>
           </p>
 
           <div class="footer">Last updated: 2026-03-04</div>
