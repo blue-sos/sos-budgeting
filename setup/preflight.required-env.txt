@@ -2,3 +2,14 @@
 # required can be: required, optional
 GITHUB_TOKEN|optional|Token for non-interactive GitHub automation|Export `GITHUB_TOKEN` for automation workflows if needed.
 OPENAI_API_KEY|optional|Key for projects integrating OpenAI API|Export `OPENAI_API_KEY` when project features require API access.
+GOOGLE_SERVICE_ACCOUNT_EMAIL|optional|Google service account email for Sheets/Drive access|Create a service account and export this value before integration coding.
+GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY|optional|Google service account private key for Sheets/Drive access|Store key securely and export locally; also configure GitHub Actions secret.
+GOOGLE_DRIVE_ROOT_FOLDER_ID|optional|Google Drive folder containing SOS budgeting assets|Create/select Drive folder and export ID.
+GOOGLE_SHEETS_BUDGET_SPREADSHEET_ID|optional|Primary Google Sheets workbook ID for budget persistence|Create/select workbook and export ID.
+QUICKBOOKS_CLIENT_ID|optional|QuickBooks OAuth client ID|Create QuickBooks app and export client ID.
+QUICKBOOKS_CLIENT_SECRET|optional|QuickBooks OAuth client secret|Create QuickBooks app and export secret securely.
+QUICKBOOKS_REALM_ID|optional|QuickBooks company realm ID|Retrieve realm ID from QuickBooks app/company settings.
+QUICKBOOKS_REFRESH_TOKEN|optional|QuickBooks OAuth refresh token|Complete OAuth flow and export token securely.
+MERCURY_API_TOKEN|optional|Mercury API token for account/transaction sync|Generate Mercury API token with required scopes.
+SHOPIFY_STORE_DOMAIN|optional|Shopify store domain for Admin API access|Set store domain (for example `schoolofsong.myshopify.com`).
+SHOPIFY_ADMIN_ACCESS_TOKEN|optional|Shopify Admin API token for data sync|Create private/custom app and export Admin token securely.
