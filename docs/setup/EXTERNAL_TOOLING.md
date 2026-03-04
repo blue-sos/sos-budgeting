@@ -25,7 +25,6 @@ Required credentials for integration milestones:
 - Local environment variable: `GOOGLE_SERVICE_ACCOUNT_EMAIL`
 - Local environment variable: `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY`
 - Local environment variable: `GOOGLE_DRIVE_ROOT_FOLDER_ID`
-- Local environment variable: `GOOGLE_SHEETS_BUDGET_SPREADSHEET_ID`
 - Local environment variable: `QUICKBOOKS_CLIENT_ID`
 - Local environment variable: `QUICKBOOKS_CLIENT_SECRET`
 - Local environment variable: `QUICKBOOKS_REALM_ID`
@@ -43,7 +42,6 @@ GitHub Actions secrets/variables:
 - Secret: `SHOPIFY_ADMIN_ACCESS_TOKEN`
 - Variable: `GOOGLE_SERVICE_ACCOUNT_EMAIL`
 - Variable: `GOOGLE_DRIVE_ROOT_FOLDER_ID`
-- Variable: `GOOGLE_SHEETS_BUDGET_SPREADSHEET_ID`
 - Variable: `QUICKBOOKS_CLIENT_ID`
 - Variable: `QUICKBOOKS_REALM_ID`
 - Variable: `SHOPIFY_STORE_DOMAIN`
@@ -66,4 +64,5 @@ Service access checks:
 Primary data location policy:
 
 - Persistent operational data is kept in Google Sheets workbooks in the project Drive folder.
+- Workbooks are selected or created by runtime logic; no static spreadsheet ID is required at setup time.
 - Source systems remain systems of record; sheet tabs store synced snapshots and derived budget views.

@@ -16,7 +16,7 @@ School of Song needs a reliable budgeting workflow that consolidates financial d
 
 ## Jobs To Be Done
 
-- Keep a canonical budget workbook in Google Sheets with auditable source data.
+- Maintain budget workbooks in Google Sheets with auditable source data.
 - Automatically pull recent transactions and balances from QuickBooks, Mercury, and Shopify.
 - Reconcile source records into budget categories and reporting periods.
 - Share finance outputs without requiring database or BI tooling.
@@ -38,10 +38,10 @@ School of Song needs a reliable budgeting workflow that consolidates financial d
 
 ## Acceptance Criteria
 
-1. A single command can run an end-to-end sync for a date window and populate raw tabs for QuickBooks, Mercury, and Shopify in the target Google Sheet.
+1. A single command can run an end-to-end sync for a date window and populate raw tabs for QuickBooks, Mercury, and Shopify in a runtime-selected or runtime-created Google Sheet.
 2. Re-running the same window does not create duplicate rows when keyed by source system record IDs.
 3. Each sync run writes structured run metadata (run ID, source, status, counts, duration) to a dedicated sheet tab.
-4. The initial workbook includes budget-ready derived tabs with documented input dependencies from raw tabs.
+4. Generated workbooks include budget-ready derived tabs with documented input dependencies from raw tabs.
 5. Setup docs list required credentials, environment variables, and verification steps for all integrations.
 
 ## Risks

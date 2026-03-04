@@ -51,7 +51,7 @@ Rationale:
 Planned module mapping to layer model:
 
 - `types`: source schemas, normalized row contracts, run metadata contracts.
-- `config`: environment schema, integration toggles, spreadsheet/workbook IDs.
+- `config`: environment schema, integration toggles, and workbook naming/location rules.
 - `repo`: provider clients for QuickBooks, Mercury, Shopify, Google Drive, Google Sheets.
 - `service`: orchestration for sync windows, deduplication, transforms, and reconciliation rules.
 - `runtime`: scheduled/manual sync commands, backfill commands, status reporting.
