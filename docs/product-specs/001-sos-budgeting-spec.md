@@ -6,7 +6,7 @@ Status: draft
 
 ## Problem
 
-School of Song needs a reliable budgeting workflow that consolidates financial data from QuickBooks and Mercury into Google Sheets, with Shopify support planned for a later milestone. Today, finance reporting is fragmented across tools and manual exports, which makes monthly budget tracking slow and error-prone.
+School of Song needs a reliable budgeting workflow that consolidates financial data from QuickBooks and Mercury into Google Sheets, with Shopify support planned for a later milestone. The workflow also needs durable storage for raw source downloads so sync runs can be audited and replayed. Today, finance reporting is fragmented across tools and manual exports, which makes monthly budget tracking slow and error-prone.
 
 ## Users
 
@@ -18,15 +18,16 @@ School of Song needs a reliable budgeting workflow that consolidates financial d
 
 - Maintain budget workbooks in Google Sheets with auditable source data.
 - Automatically pull recent transactions and balances from QuickBooks and Mercury.
+- Persist raw API downloads in Firebase Firestore for replay, traceability, and incident recovery.
 - Reconcile source records into budget categories and reporting periods.
 - Share finance outputs without requiring database or BI tooling.
 
 ## Requirements
 
 1. The system must ingest source data from QuickBooks and Mercury via authenticated API connectors.
-2. Persistent data must live in Google Sheets (and supporting files in Google Drive) rather than an internal database.
+2. Referenceable budgeting and reporting data must live in Google Sheets (and supporting files in Google Drive).
 3. Each sync run must be idempotent for a defined time window, avoiding duplicate records on rerun.
-4. Source records must be written to raw tabs before transformation, preserving traceability to original system IDs.
+4. Raw downloads from source systems must be persisted in Firebase Firestore under a stable collection path for audit and replay.
 5. Budget model tabs must derive from raw tabs with deterministic transformations and documented formulas/mappings.
 6. Sync jobs must emit run logs (start/end time, source, row counts, error summary) for operational visibility.
 
@@ -41,7 +42,7 @@ School of Song needs a reliable budgeting workflow that consolidates financial d
 
 1. A single command can run an end-to-end sync for a date window and populate raw tabs for QuickBooks and Mercury in a runtime-selected or runtime-created Google Sheet.
 2. Re-running the same window does not create duplicate rows when keyed by source system record IDs.
-3. Each sync run writes structured run metadata (run ID, source, status, counts, duration) to a dedicated sheet tab.
+3. Each sync run writes structured run metadata (run ID, source, status, counts, duration) to a dedicated sheet tab and records corresponding raw-download documents in Firestore.
 4. Generated workbooks include budget-ready derived tabs with documented input dependencies from raw tabs.
 5. Setup docs list required credentials, environment variables, and verification steps for all integrations.
 
@@ -50,6 +51,7 @@ School of Song needs a reliable budgeting workflow that consolidates financial d
 - API rate limits and pagination drift across providers may cause incomplete windows.
 - OAuth token lifecycle complexity can create brittle manual setup.
 - Google Sheets size/performance limits may require archival strategy as data grows.
+- Firestore document sizing/cost can grow quickly if raw payload strategy is not bounded.
 - Schema changes in source APIs can silently break transformations if not validated.
 
 ## Linked Artifacts

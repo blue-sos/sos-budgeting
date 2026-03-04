@@ -6,14 +6,15 @@ Status: draft
 
 ## Context
 
-We need a project foundation that integrates QuickBooks, Mercury, Google Drive, and Google Sheets while keeping Google Sheets as the persistent data store. Shopify is deferred to a later milestone. This lets School of Song move quickly with transparent budget workflows that stakeholders can inspect directly.
+We need a project foundation that integrates QuickBooks, Mercury, Google Drive, Google Sheets, and Firebase Firestore. Google Sheets is the referenceable budgeting surface, while Firestore stores raw-download persistence for replay and audit trails. Shopify is deferred to a later milestone.
 
 ## Scope
 
 In scope:
 
-- Connector interfaces and configuration model for QuickBooks, Mercury, and Google APIs.
+- Connector interfaces and configuration model for QuickBooks, Mercury, Google APIs, and Firestore.
 - A sync workflow that writes raw source data and run metadata into Google Sheets.
+- A raw-download persistence path in Firestore for source payload durability and replay.
 - Deterministic transformation boundaries from raw tabs to budget-facing tabs.
 - Setup and governance docs for credentials, preflight checks, and implementation milestones.
 
@@ -26,7 +27,8 @@ Out of scope:
 
 ## Constraints
 
-- Google Sheets is the persistence layer for operational data in this project phase.
+- Google Sheets remains the persistence layer for referenceable budgeting outputs.
+- Firebase Firestore persists raw source downloads and sync manifests.
 - Integrations must be auditable and idempotent by source record ID and sync window.
 - Sensitive credentials cannot be stored in-repo; setup must rely on local env and GitHub secrets.
 - Architecture must follow the template layer direction and boundary validation policy.
@@ -39,11 +41,12 @@ Out of scope:
 
 ## Decision
 
-Choose option 1 (Sheets-first) for the initial foundation.
+Choose option 1 (Sheets-first) with Firestore sidecar persistence for raw downloads.
 
 Rationale:
 
 - Matches product constraint that persistent operational data should live in Google Sheets.
+- Adds reliable replay/audit storage for raw connector payloads without making Firestore the reporting surface.
 - Minimizes infrastructure burden during early iteration.
 - Keeps finance workflows transparent to non-engineering users.
 
@@ -52,8 +55,8 @@ Rationale:
 Planned module mapping to layer model:
 
 - `types`: source schemas, normalized row contracts, run metadata contracts.
-- `config`: environment schema, integration toggles, and workbook naming/location rules.
-- `repo`: provider clients for QuickBooks, Mercury, Google Drive, Google Sheets.
+- `config`: environment schema, integration toggles, workbook naming/location rules, and Firestore collection paths.
+- `repo`: provider clients for QuickBooks, Mercury, Google Drive, Google Sheets, and Firestore.
 - `service`: orchestration for sync windows, deduplication, transforms, and reconciliation rules.
 - `runtime`: scheduled/manual sync commands, backfill commands, status reporting.
 - `ui`: optional future operator dashboard or CLI output formatting.
@@ -61,6 +64,7 @@ Planned module mapping to layer model:
 Boundary approach:
 
 - Validate every API response against explicit schemas before writing to sheets.
+- Persist raw source payloads to Firestore before sheet transformation steps.
 - Preserve raw records in source-specific tabs and write transformed outputs separately.
 - Track run checkpoints and error summaries in a run-log tab.
 
@@ -72,6 +76,9 @@ Boundary approach:
 - Risk: OAuth token failures interrupt scheduled sync.
 - Mitigation: add connection verification command and pre-run auth checks.
 
+- Risk: Firestore document growth or unbounded payload size.
+- Mitigation: define payload size limits, prune/archive policy, and normalized metadata fields.
+
 - Risk: Source API shape changes create silent data corruption.
 - Mitigation: schema validation with fail-fast logging and run status marking.
 
@@ -79,6 +86,7 @@ Boundary approach:
 
 - Unit tests for schema validation, deduplication, and transform mapping.
 - Integration smoke tests per connector with mocked API responses.
+- Integration smoke tests for Firestore raw-download writes on each connector run.
 - Manual acceptance check: run sync twice for same window and verify no duplicate source IDs.
 - Preflight implementation gate must pass before major coding milestone.
 

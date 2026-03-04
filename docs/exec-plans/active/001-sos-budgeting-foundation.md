@@ -6,7 +6,7 @@ Status: active
 
 ## Objective
 
-Stand up a production-ready project foundation for SOS Budgeting that can ingest QuickBooks, Mercury, and Shopify data into Google Sheets with clear setup docs, enforcement checks, and milestone-based implementation scaffolding.
+Stand up a production-ready project foundation for SOS Budgeting that can ingest QuickBooks and Mercury data into Google Sheets while persisting raw downloads in Firebase Firestore, with clear setup docs, enforcement checks, and milestone-based implementation scaffolding.
 
 ## Scope
 
@@ -25,7 +25,7 @@ Stand up a production-ready project foundation for SOS Budgeting that can ingest
 
 1. Required bootstrap artifacts exist and are linked in indexes: product spec, design doc, and active ExecPlan.
 2. Repository passes `./scripts/preflight.sh --stage bootstrap` and `make check`.
-3. Setup docs enumerate required integration credentials and verification flow for QuickBooks, Google Drive/Sheets, Mercury, and Shopify.
+3. Setup docs enumerate required integration credentials and verification flow for QuickBooks, Google Drive/Sheets, Mercury, and Firebase Firestore.
 4. Implementation path is split into milestones with concrete validation gates.
 
 ## Purpose / Big Picture
@@ -63,7 +63,7 @@ Current repository state started from a generic agent-first template. Project in
 
 ## Interfaces and Dependencies
 
-- External APIs: QuickBooks Online API, Mercury API, Shopify Admin API, Google Drive API, Google Sheets API.
+- External APIs: QuickBooks Online API, Mercury API, Google Drive API, Google Sheets API, Firestore API.
 - Auth dependencies: OAuth2 and API tokens as documented in setup artifacts.
 - Tooling dependencies: `git`, `gh`, `make`, `rg`, optional `docker`.
 
@@ -91,7 +91,7 @@ Current repository state started from a generic agent-first template. Project in
 ## Progress
 
 - [x] 2026-03-04: Bootstrap preflight passed and repository connected to target GitHub remote.
-- [ ] 2026-03-04: Implementation preflight blockers resolved.
+- [x] 2026-03-04: Implementation preflight blockers resolved.
 - [ ] 2026-03-04: Milestone 1 connector runtime scaffolding started.
 
 ## Progress Log
@@ -99,6 +99,7 @@ Current repository state started from a generic agent-first template. Project in
 - 2026-03-04: Initialized git repository, connected `origin`, created initial commit, and pushed to `main`.
 - 2026-03-04: Bootstrap preflight rerun passed with no blocking failures.
 - 2026-03-04: Instantiation artifacts created for SOS Budgeting.
+- 2026-03-04: Added Firebase Firestore `(default)` database (`nam5`) and configured raw-download persistence environment variables.
 
 ## Surprises & Discoveries
 
@@ -107,7 +108,8 @@ Current repository state started from a generic agent-first template. Project in
 ## Decision Log
 
 - 2026-03-04: Use Google Sheets as persistent operational data store for initial implementation phase.
-- 2026-03-04: Prioritize connectors for QuickBooks, Mercury, Shopify, and Google APIs as first integration milestone.
+- 2026-03-04: Use Firebase Firestore as durable storage for raw connector downloads and replay metadata.
+- 2026-03-04: Prioritize connectors for QuickBooks, Mercury, and Google APIs as first integration milestone; defer Shopify.
 
 ## Outcomes & Retrospective
 
