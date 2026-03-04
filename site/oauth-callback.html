@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OAuth Callback | SOS Budgeting</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
+    <main>
+      <section class="card">
+        <div class="header">
+          <h1>OAuth Callback</h1>
+          <p>Capture <code>code</code> and <code>realmId</code> after Intuit authorization.</p>
+          <div class="nav">
+            <a href="./index.html">Home</a>
+            <a href="./privacy.html">Privacy</a>
+            <a href="./terms.html">Terms</a>
+          </div>
+        </div>
+        <div class="content">
+          <p>
+            If you arrived here from Intuit consent, copy the values below and run local token exchange.
+          </p>
+
+          <table class="kv" id="result-table">
+            <tr><td>Status</td><td id="status">Waiting for callback parameters...</td></tr>
+            <tr><td>Authorization code</td><td><code id="code">(missing)</code></td></tr>
+            <tr><td>Realm ID</td><td><code id="realm">(missing)</code></td></tr>
+            <tr><td>State</td><td><code id="state">(missing)</code></td></tr>
+            <tr><td>Error</td><td><code id="error">(none)</code></td></tr>
+          </table>
+
+          <div class="nav" style="margin-top: 1rem">
+            <button class="button" id="copy-code" type="button">Copy code</button>
+            <button class="button" id="copy-realm" type="button">Copy realmId</button>
+            <button class="button" id="copy-url" type="button">Copy full callback URL</button>
+          </div>
+
+          <h3>Local Token Exchange Template</h3>
+          <pre id="token-template">curl -X POST 'https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -H 'Authorization: Basic BASE64(client_id:client_secret)' \
+  -d 'grant_type=authorization_code' \
+  -d 'code=PASTE_CODE_HERE' \
+  -d 'redirect_uri=https://blue-sos.github.io/sos-budgeting/oauth-callback.html'</pre>
+
+          <p class="muted">
+            This page stores nothing server-side; it only reads query parameters in your browser.
+          </p>
+
+          <div class="footer">Last updated: 2026-03-04</div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var code = params.get('code') || '';
+        var realmId = params.get('realmId') || '';
+        var state = params.get('state') || '';
+        var error = params.get('error') || params.get('error_description') || '';
+
+        var status = document.getElementById('status');
+        var codeEl = document.getElementById('code');
+        var realmEl = document.getElementById('realm');
+        var stateEl = document.getElementById('state');
+        var errorEl = document.getElementById('error');
+        var tplEl = document.getElementById('token-template');
+
+        if (code && realmId) {
+          status.textContent = 'Authorization callback received.';
+          status.style.color = '#0b6e4f';
+          codeEl.textContent = code;
+          realmEl.textContent = realmId;
+          stateEl.textContent = state || '(empty)';
+          errorEl.textContent = '(none)';
+
+          tplEl.textContent = tplEl.textContent.replace('PASTE_CODE_HERE', code);
+        } else if (error) {
+          status.textContent = 'Authorization returned an error.';
+          status.style.color = '#9b2c2c';
+          errorEl.textContent = error;
+        } else {
+          status.textContent = 'No OAuth parameters present in URL.';
+          status.style.color = '#54606d';
+        }
+
+        function copyValue(value) {
+          if (!value) {
+            return;
+          }
+          navigator.clipboard.writeText(value);
+        }
+
+        document.getElementById('copy-code').addEventListener('click', function () {
+          copyValue(code);
+        });
+
+        document.getElementById('copy-realm').addEventListener('click', function () {
+          copyValue(realmId);
+        });
+
+        document.getElementById('copy-url').addEventListener('click', function () {
+          copyValue(window.location.href);
+        });
+      })();
+    </script>
+  </body>
+</html>

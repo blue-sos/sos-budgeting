@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy Policy | SOS Budgeting</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
+    <main>
+      <section class="card">
+        <div class="header">
+          <h1>Privacy Policy</h1>
+          <p>SOS Budgeting QuickBooks Integration</p>
+          <div class="nav">
+            <a href="./index.html">Home</a>
+            <a href="./terms.html">Terms</a>
+            <a href="./launch.html">Launch</a>
+            <a href="./disconnect.html">Disconnect</a>
+          </div>
+        </div>
+        <div class="content">
+          <p><strong>Effective date:</strong> 2026-03-04</p>
+
+          <h3>Who We Are</h3>
+          <p>
+            SOS Budgeting is an internal finance tool operated by School of Song to sync accounting data
+            from QuickBooks into Google Sheets and Firebase Firestore.
+          </p>
+
+          <h3>Data We Access</h3>
+          <ul>
+            <li>QuickBooks accounting records authorized through OAuth.</li>
+            <li>OAuth metadata (realm ID, token timestamps, and connection status).</li>
+            <li>Operational sync metadata and raw report payloads needed for audit and replay.</li>
+          </ul>
+
+          <h3>How We Use Data</h3>
+          <ul>
+            <li>Generate budgeting and reporting sheets.</li>
+            <li>Maintain run logs for reliability and troubleshooting.</li>
+            <li>Prevent duplicate sync writes via idempotent run keys.</li>
+          </ul>
+
+          <h3>Data Sharing</h3>
+          <p>
+            We do not sell data. Data is shared only with infrastructure providers required to operate the
+            internal workflow (Google Cloud and Intuit APIs).
+          </p>
+
+          <h3>Data Retention</h3>
+          <p>
+            Sync outputs and raw payloads are retained for operational finance history and audit purposes.
+            Retention windows may be adjusted by School of Song based on policy and legal requirements.
+          </p>
+
+          <h3>Security</h3>
+          <ul>
+            <li>Secrets are stored outside source control.</li>
+            <li>Access to credentials and stores is role-restricted.</li>
+            <li>API calls are authenticated via OAuth and service-account controls.</li>
+          </ul>
+
+          <h3>Your Choices</h3>
+          <p>
+            You may revoke app access from QuickBooks at any time. If revoked, new sync jobs will stop until
+            re-authorized.
+          </p>
+
+          <h3>Contact</h3>
+          <p>
+            For privacy questions, contact
+            <a href="mailto:blue@schoolofsong.org">blue@schoolofsong.org</a>.
+          </p>
+
+          <div class="footer">Last updated: 2026-03-04</div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

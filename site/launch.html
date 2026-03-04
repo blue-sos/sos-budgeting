@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Launch | SOS Budgeting</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
+    <main>
+      <section class="card">
+        <div class="header">
+          <h1>Launch Endpoint</h1>
+          <p>SOS Budgeting QuickBooks Integration</p>
+          <div class="nav">
+            <a href="./index.html">Home</a>
+            <a href="./privacy.html">Privacy</a>
+            <a href="./terms.html">Terms</a>
+            <a href="./disconnect.html">Disconnect</a>
+            <a href="./oauth-callback.html">OAuth Callback</a>
+          </div>
+        </div>
+        <div class="content">
+          <p>
+            This endpoint is provided for Intuit app metadata. SOS Budgeting is run as a local internal tool.
+          </p>
+
+          <h3>How Authorization Is Started</h3>
+          <ol>
+            <li>An authorized operator opens the Intuit OAuth consent URL.</li>
+            <li>After consent, Intuit redirects to the configured callback URL.</li>
+            <li>The callback page displays <code>code</code> and <code>realmId</code> for local token exchange.</li>
+          </ol>
+
+          <h3>Operational Note</h3>
+          <p>
+            No credentials are entered on this page and no QuickBooks data is processed directly by this website.
+          </p>
+
+          <p>
+            <a class="button primary" href="./oauth-callback.html">Open Callback Diagnostic Page</a>
+          </p>
+
+          <div class="footer">Last updated: 2026-03-04</div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SOS Budgeting App Policies</title>
+    <meta name="description" content="Policy and callback endpoints for SOS Budgeting QuickBooks integration." />
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
+    <main>
+      <section class="card">
+        <div class="header">
+          <h1>SOS Budgeting App Policies</h1>
+          <p>Public compliance endpoints for Intuit QuickBooks OAuth (private internal tool).</p>
+          <div class="nav">
+            <a href="./privacy.html">Privacy</a>
+            <a href="./terms.html">Terms</a>
+            <a href="./launch.html">Launch</a>
+            <a href="./disconnect.html">Disconnect</a>
+            <a href="./oauth-callback.html">OAuth Callback</a>
+          </div>
+        </div>
+        <div class="content">
+          <p><span class="badge">Internal Tool</span></p>
+          <p>
+            This site exists to satisfy required public URLs for the SOS Budgeting QuickBooks app.
+            The actual sync software runs locally and is not a public SaaS product.
+          </p>
+
+          <div class="grid two">
+            <div class="panel">
+              <h2>Intuit Form Values</h2>
+              <table class="kv">
+                <tr><td>Host Domain</td><td><code>blue-sos.github.io</code></td></tr>
+                <tr><td>Launch URL</td><td><code>https://blue-sos.github.io/sos-budgeting/launch.html</code></td></tr>
+                <tr><td>Disconnect URL</td><td><code>https://blue-sos.github.io/sos-budgeting/disconnect.html</code></td></tr>
+                <tr><td>Privacy Policy URL</td><td><code>https://blue-sos.github.io/sos-budgeting/privacy.html</code></td></tr>
+                <tr><td>EULA URL</td><td><code>https://blue-sos.github.io/sos-budgeting/terms.html</code></td></tr>
+                <tr><td>Redirect URI</td><td><code>https://blue-sos.github.io/sos-budgeting/oauth-callback.html</code></td></tr>
+              </table>
+            </div>
+
+            <div class="panel">
+              <h2>How This Is Used</h2>
+              <ol>
+                <li>Intuit redirects to <code>oauth-callback.html?code=...&amp;realmId=...</code>.</li>
+                <li>You copy values from the page and exchange code for tokens locally.</li>
+                <li>Local scripts use refresh token to pull accounting reports.</li>
+              </ol>
+              <p class="muted">No financial records are processed by this website.</p>
+            </div>
+          </div>
+
+          <div class="footer">
+            Contact: <a href="mailto:blue@schoolofsong.org">blue@schoolofsong.org</a><br />
+            Last updated: 2026-03-04
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
