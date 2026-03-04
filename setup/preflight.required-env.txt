@@ -1,0 +1,4 @@
+# env_var|required|description|remediation
+# required can be: required, optional
+GITHUB_TOKEN|optional|Token for non-interactive GitHub automation|Export `GITHUB_TOKEN` for automation workflows if needed.
+OPENAI_API_KEY|optional|Key for projects integrating OpenAI API|Export `OPENAI_API_KEY` when project features require API access.

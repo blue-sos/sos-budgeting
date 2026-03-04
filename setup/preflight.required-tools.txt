@@ -1,0 +1,7 @@
+# command|required|description|remediation
+# required can be: required, optional
+git|required|Git CLI for repository operations|Install Git and ensure it is on PATH.
+rg|required|ripgrep for fast repository search|Install ripgrep and ensure `rg` is on PATH.
+gh|required|GitHub CLI for repo/auth automation|Install GitHub CLI (`gh`) and run `gh auth login`.
+make|required|Make for standard task entrypoints|Install GNU Make and ensure `make` is on PATH.
+docker|optional|Container runtime for local stacks and observability|Install Docker (or equivalent) if this project uses containerized dependencies.

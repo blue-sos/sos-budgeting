@@ -1,0 +1,9 @@
+# check_id|required|description|remediation
+# required can be: required, optional
+PF-001|required|Git repository initialized with at least one commit|Run `git init`, add files, and create an initial commit.
+PF-002|required|GitHub repository configured as `origin`|Run `gh repo create ... --source=. --push` or add remote manually.
+PF-003|required|GitHub CLI authentication works|Run `gh auth login` and verify with `gh auth status`.
+PF-004|required|Local secrets/credentials are available|Configure local env vars or secret manager access used by this project.
+PF-005|required|GitHub Actions secrets/variables are configured|Add required secrets/variables in repo settings before CI-dependent work.
+PF-006|required|Required MCP servers are configured in Codex|Configure MCP servers in Codex and validate connectivity.
+PF-007|optional|Local observability stack dependencies are installed|Install tooling like Docker/Vector/Grafana stack if the project depends on them.

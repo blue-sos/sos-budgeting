@@ -1,0 +1,10 @@
+Owner: @platform
+Last Reviewed: 2026-02-20
+Status: draft
+
+Populate this file with build and runtime references for the target stack:
+- package manager commands
+- test commands
+- lint and format commands
+- CI cache strategy
+- deployment commands

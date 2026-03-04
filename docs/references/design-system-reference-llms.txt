@@ -1,0 +1,10 @@
+Owner: @frontend
+Last Reviewed: 2026-02-20
+Status: draft
+
+Populate this file with concise design system rules for the target project:
+- typography scale
+- spacing tokens
+- color and contrast constraints
+- accessibility standards
+- interaction states
