@@ -21,7 +21,7 @@ Out of scope:
 
 - Advanced forecasting models and scenario planning.
 - Payroll-specific accounting logic.
-- Full production deployment and secret-rotation automation.
+- Full production deployment automation.
 - Shopify connector implementation in the foundation milestone.
 
 ## Constraints
