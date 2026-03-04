@@ -22,6 +22,7 @@ Optional MCP servers:
 
 Required credentials for integration milestones:
 
+- Local untracked file: `.env.local` in repository root for local development secrets.
 - Local environment variable: `GOOGLE_SERVICE_ACCOUNT_EMAIL`
 - Local environment variable: `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY`
 - Local environment variable: `GOOGLE_DRIVE_ROOT_FOLDER_ID`
@@ -47,6 +48,7 @@ GitHub Actions secrets/variables:
 - Variable: `SHOPIFY_STORE_DOMAIN`
 
 Do not store secret values in this repository.
+Do store local-only secrets in `.env.local` (ignored by git) and load from shell profile.
 
 ## External Services
 
